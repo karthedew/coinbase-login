@@ -1,4 +1,4 @@
-# gitcrypto-backend
+# Coinbase Login - Backend
 
 This is the backend server with REST API and GraphQL for the GitCrypto project.
 

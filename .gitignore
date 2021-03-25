@@ -1,0 +1,8 @@
+frontend/node_modules
+
+
+backend/node_modules
+backend/.env
+backend/ec2-us-west-2.pem
+backend/src/keys.ts
+backend/src/secrets.ts

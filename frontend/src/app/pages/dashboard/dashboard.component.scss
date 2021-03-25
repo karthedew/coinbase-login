@@ -1,0 +1,34 @@
+.dashboard-body {
+    background: linear-gradient(180deg, #1988d2 30em, #eceff1 30em);
+    
+    display: grid;
+
+    height: 100%;
+    width: auto;
+
+    grid-template-columns: 20% auto 25%;
+    grid-template-rows: 20% auto auto;
+    grid-template-areas: "toolbar toolbar toolbar"
+                         "body    body    body"
+                         "footer  footer  footer";
+
+    margin: 0; padding: 5px;
+
+    div {
+        margin: 2em;
+
+        // mat-form-field {
+        //     border-width: thick;
+        // }
+    }
+
+    .dashboard-toolbar {
+        grid-area: toolbar;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: white;
+        padding-right: 5%;
+    }
+}
+

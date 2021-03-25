@@ -1,0 +1,16 @@
+.userprofile-body {
+    background: linear-gradient(180deg, rgb(58, 58, 58) 30em, #eceff1 30em);
+
+    display: grid;
+    
+    height: 100%;
+    width: auto;
+
+    margin: 0; padding: 5px;
+
+    grid-template-columns: 20% auto 25%;
+    grid-template-rows: 20% auto auto;
+    grid-template-areas: "toolbar toolbar toolbar"
+                         "body    body    body"
+                         "footer  footer  footer";
+}

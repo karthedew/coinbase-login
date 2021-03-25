@@ -1,0 +1,43 @@
+<!-- Toolbar -->
+<mat-toolbar>
+    <div class="toolbar">
+      <div>
+          <h2>
+              GitCrypto
+          </h2>
+      </div>
+  
+      <div>
+          <!-- Navigation -->
+          <mat-nav-list dense class="mat-nav-horizontal" fxHide.xs>
+                <div *ngIf="!(isHandset$ | async)">
+                    <mat-list-item>
+                        <a routerLink="/">Home</a>
+                    </mat-list-item>
+                    <mat-list-item>
+                        <a routerLink="/dashboard">Dashboard</a>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="!isLoggedIn">
+                        <a routerLink="/signup">SignUp</a>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="isLoggedIn">
+                        <a (click)="logout()">Logout</a>
+                    </mat-list-item>
+                </div>
+                <div *ngIf="(isHandset$ | async)">
+                    <mat-list-item>
+                        <!-- <button (click)="onToggleSidenav($event)"> -->
+                            <fa-icon [icon]="faEllipsisV" size="lg" (click)="onToggleSidenav($event)"></fa-icon>
+                        <!-- </button> -->
+                    </mat-list-item>
+                </div>
+          </mat-nav-list>
+      </div>
+    </div>
+
+    <!-- <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div> -->
+  </mat-toolbar>

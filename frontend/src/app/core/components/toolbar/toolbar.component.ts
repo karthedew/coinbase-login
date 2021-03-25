@@ -38,6 +38,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   public onToggleSidenav(event: Event) {
+    console.log('Toggle the sidenav')
     this.sidenavToggle.emit(event);
   }
 

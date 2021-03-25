@@ -1,0 +1,121 @@
+.home-body-format {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.item-one {
+    order: 1;
+    min-height: 450px;
+    max-height: auto;
+    background-color: white;
+    width: 100%;
+    color: black;
+    align-self: center;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+        font-weight: bolder;
+        font-size: xx-large;
+    }
+
+    .body-one {
+        max-width: 50vw;
+        min-width: 0px;
+        font-size: large;
+        font-weight: lighter;
+    }
+
+    .item-one-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        // margin: 30px;
+
+        mat-card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 400px;
+        }
+    }
+}
+
+.item-two {
+    order: 2;
+    min-height: 450px;
+    max-height: auto;
+    background-color: white;
+    width: 100%;
+    color: black;
+    align-self: center;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+        font-weight: bolder;
+        font-size: xx-large;
+    }
+
+    .body-two {
+        max-width: 50vw;
+        min-width: 0px;
+        font-size: large;
+        font-weight: lighter;
+    }
+
+    .item-two-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        // margin: 30px;
+
+        mat-card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 400px;
+        }
+    }
+}
+
+.item-three {
+    order: 3;
+    min-height: 300px;
+    background-color: violet;
+    width: 100%;
+    color: black;
+}
+
+.item-four {
+    order: 4;
+    min-height: 300px;
+    background-color: green;
+    width: 100%;
+    color: black;
+}
+
+.item-five {
+    order: 5;
+    min-height: 300px;
+    background-color: orange;
+    width: 100%;
+    color: black;
+}

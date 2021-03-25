@@ -31,6 +31,7 @@ import { InMemoryCache } from '@apollo/client/core';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+// import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 @NgModule({
   declarations: [

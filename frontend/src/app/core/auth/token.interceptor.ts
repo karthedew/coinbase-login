@@ -45,23 +45,11 @@ export class AuthTokenInterceptor implements HttpInterceptor {
               }
             })
 
-            console.log(clone.headers);
-
             return next.handle(clone)
-
-            // .pipe(catchError(error => {
-            //   if(error instanceof HttpErrorResponse && error.status === 401) {
-                
-            //   } else {
-            //     return throwError(error);
-            //   }
-            // }));
         }
 
         
       }
-
-      console.log('You are making a Coinbase POST Request')
 
       return next.handle(request);
 

@@ -1,6 +1,6 @@
 # Coinbase Login - Backend
 
-This is the backend server with REST API and GraphQL for the GitCrypto project.
+This is the backend server for the Coinbase login example with a REST API handling the Coinbase authorization and GraphQL implementing server authentication using JWT.
 
 ## Dependencies
 

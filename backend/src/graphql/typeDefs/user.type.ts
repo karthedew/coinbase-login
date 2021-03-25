@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from "type-graphql";
 import { UserModel }     from "../../db/models/user.model";
+import { GitlabUser } from "./gitlab/gitlabuser.type";
 
 @ObjectType({ description: "User for GitCrypto"})
 class User extends UserModel {
@@ -47,6 +48,13 @@ class User extends UserModel {
     //     default: ['read:own_account']
     // })
     permissions: string[]
+
+    // -----------------------------
+    // --- SUBDOCUMENT VARIABLES ---
+    // -----------------------------
+    @Field(() => GitlabUser)
+    gitlabUser: GitlabUser
+
 
 }
 

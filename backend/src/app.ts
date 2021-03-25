@@ -15,9 +15,12 @@ import { connect, connection } from "mongoose";
 // --- RESOLVERS ---
 import { UserResolver } from "./graphql/resolvers/user.resolver";
 import { GitLabResolver } from "./graphql/resolvers/gitlab/gitlab.resolver";
+import { GitLabSearchResolver } from "./graphql/resolvers/gitlab/gitlabSearch.resolver";
+import { GitHubResolver } from "./graphql/resolvers/github/github.resolver";
+
 
 // --- AUTHENTICATION ---
-import { getUser } from "./core/services/user.auth";
+// import { getUser } from "./core/services/user.auth";
 import expressJwt from "express-jwt";
 import { ACCESS_TOKEN_SECRET, EXPRESS_JWT_SECRET } from "./keys";
 
@@ -27,15 +30,7 @@ import { AuthenticationError } from "apollo-server/dist/exports";
 // --- REST API ROUTES ---
 import { auth_routes } from "./api/authorization/routes.auth";
 import { verify, decode } from "jsonwebtoken";
-
-
-@Resolver()
-class HelloResolver {
-    @Query(() => String)
-    async hello() {
-        return "Hello World!"
-    }
-}
+// import { GitlabUser } from "./graphql/typeDefs/gitlab/gitlabuser.type";
 
 const startServer = async () => {
 
@@ -63,7 +58,7 @@ const startServer = async () => {
     );
 
     const schema = await buildSchema({
-        resolvers: [ HelloResolver, UserResolver, GitLabResolver ]
+        resolvers: [ GitHubResolver, UserResolver, GitLabResolver, GitLabSearchResolver ]
     })
 
     const apolloServer = new ApolloServer({ 

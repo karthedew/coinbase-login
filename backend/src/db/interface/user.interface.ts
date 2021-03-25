@@ -1,4 +1,5 @@
 import { Document } from "mongoose";
+import { GitlabUserDocument } from "./gitlab/gitlabuser.interface";
 
 interface UserDocument extends Document {
     name?: string,
@@ -7,6 +8,7 @@ interface UserDocument extends Document {
     refreshTokenCoinbase?: string,
     username?: string,
     email?: string,
+    gitlabUser?: GitlabUserDocument
 }
 
 export { UserDocument }

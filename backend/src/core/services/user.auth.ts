@@ -6,6 +6,9 @@ import { stringify } from "qs";
 import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from "../../keys";
 import { sign } from "jsonwebtoken";
 import { query } from "express";
+import { Resolver } from "type-graphql";
+
+// 
 
 
 
@@ -78,7 +81,7 @@ async function mintAuthToken(req: any): Promise<any> {
     const name = user.data.name;
 
 
-    const newUser = await loginUser(uid, user.data.data.name, Coinbase_accessToken, Coinbase_refreshToken);
+    const newUser = await loginCoinbaseUser(uid, user.data.data.name, Coinbase_accessToken, Coinbase_refreshToken);
 
     const accessToken = createAccessToken(newUser);
     const refreshToken = createRefreshToken(newUser);
@@ -88,8 +91,41 @@ async function mintAuthToken(req: any): Promise<any> {
         'refreshToken': refreshToken
     }
 
-    console.log('The Application Access Token: ', accessToken)
-    console.log('The Application Refresh Token: ', refreshToken)
+    // console.log('The Application Access Token: ', accessToken)
+    // console.log('The Application Refresh Token: ', refreshToken)
+    
+
+    return results
+}
+
+async function mintGitlabAuthTokens(req:any): Promise<any> {
+    
+    console.log(req.query.accessToken);
+
+    const user = await getGitlabUser(req.query.accessToken);
+
+    const uid = 'gitlab:' + user.data.id;
+    const name = user.data.name;
+    const username = user.data.username;
+    const gitlab_url = user.data.web_url;
+
+    loginGitlabUser(uid, name)
+
+    // console.log('Here is the gitlab user: ', user);
+
+
+
+    // We want to make a GitLab request to figure out who the user is.
+
+    // - Either login the user, or add a user to the login.
+    
+    let results = {
+        'accessToken': 'accessToken',
+        'refreshToken': 'refreshToken'
+    }
+
+    // console.log('The Application Access Token: ', accessToken)
+    // console.log('The Application Refresh Token: ', refreshToken)
     
 
     return results
@@ -120,6 +156,14 @@ async function getCoinbaseUser(accessToken: any): Promise<any> {
     return user
 }
 
+async function getGitlabUser(accessToken: string): Promise<any> {
+    const userUrl = 'https://gitlab.com/api/v4/user';
+
+    const user = await axios.get(userUrl, { headers: { 'Authorization': `Bearer ${accessToken}` } });
+
+    return user
+}
+
 
 /*
 getUser
@@ -137,7 +181,7 @@ getUser
         - The JWT token necessary to validate request author.
 
 */
-function loginUser(uid: string, name: string, accessTokenCoinbase: string, refreshTokenCoinbase: string): Promise<any> {
+function loginCoinbaseUser(uid: string, name: string, accessTokenCoinbase: string, refreshTokenCoinbase: string): Promise<any> {
 
     return new Promise<any> ((resolve, reject) => {
         User.findOne({
@@ -161,7 +205,7 @@ function loginUser(uid: string, name: string, accessTokenCoinbase: string, refre
                     })
             } else {
                 resolve(user)
-            }            
+            }
         }).catch(err => {
             reject(err)
             throw new Error('Registering/Logging in user not permitted...')
@@ -169,6 +213,109 @@ function loginUser(uid: string, name: string, accessTokenCoinbase: string, refre
     }) 
 }
 
+/*
+loginGitlabUser
+
+    This function query's the backend to see if a user exists and returns 
+    that user or NULL.
+
+    Parameters
+    ----------
+
+    username : string
+        - The username to query.
+    
+    token : string
+        - The JWT token necessary to validate request author.
+
+*/
+function loginGitlabUser(uid: string, name: string): Promise<any> {
+
+    return new Promise<any> ((resolve, reject) => {
+        User.findOne({
+            'gitlabUser.uidGitlab': uid
+        }).then(async user => {
+            if(!user) {
+                const user = await createUser('gitlab', name, uid);
+
+                console.log('You are loggin in the GitLab User: ', user);
+            } else {
+                resolve(user)
+            }
+        }).catch(err => {
+            reject(err);
+            throw new Error('Registering/Logging in user not permitted...')
+        })
+    })
+    
+    // return new Promise<any> ((resolve, reject) => {
+    //     User.findOne({
+    //         uidCoinbase: uid
+    //     }).then(user => {
+    //         if (!user) {
+    //             const user = new User({
+    //                 uidCoinbase: uid,
+    //                 name: name
+    //             })
+                
+    //             // save 
+    //             user.save()
+    //                 .then(user => {
+    //                     user.save()
+    //                     resolve(user)
+    //                 }).catch(err => {
+    //                     throw new Error (`You got an error creating a new user: ${err}`)
+    //                 })
+    //         } else {
+    //             resolve(user)
+    //         }            
+    //     }).catch(err => {
+    //         reject(err)
+    //         throw new Error('Registering/Logging in user not permitted...')
+    //     })
+    // }) 
+}
+
+
+/*
+
+*/
+async function createUser(loginType: string, name:string, uid:string) {
+
+   
+    if(loginType === 'gitlab') {
+        const user = new User({
+            name: name,
+            gitlabUser: {
+                gitlabName: name,
+                uidGitlab: uid
+            }
+        })
+
+        // user.gitlabUser.gitlabName = name;
+
+        console.log('This is the new user!', user);
+
+        user.save()
+            .then(user => {
+                console.log('the saved user: ', user)
+                return user
+            })
+
+        return user
+    }
+
+    if(loginType === 'coinbase') {
+        console.log('Coinbase login')
+    }
+    // const user = new User({
+    //     name: name
+    // })
+
+    // user.save()
+
+    return 'user'
+}
 
 
 /*
@@ -255,4 +402,4 @@ function createRefreshToken(user: User) {
     )
 }
 
-export { getUser, mintAuthToken, getCoinbaseUser, loginUser }
+export { getUser, mintAuthToken, getCoinbaseUser, loginCoinbaseUser, mintGitlabAuthTokens }

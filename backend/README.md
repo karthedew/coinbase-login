@@ -27,3 +27,7 @@ This backend service utilizes environment variables to run the Coinbase login pr
 ### STEP 3: Launch Backend Server
 
 ```npm start```
+
+## GraphQL Explorer
+
+To access the GraphQL explorer, navigate to ```http://localhost:4000/graphql``` in your browser.

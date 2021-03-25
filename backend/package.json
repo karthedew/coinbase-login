@@ -6,7 +6,10 @@
   "scripts": {
     "start": "nodemon --exec ts-node src/app.ts",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'test/**/*.ts'",
-    "startserver": "mongod --config /usr/local/etc/mongod.conf --fork"
+    "startserver": "mongod --config /usr/local/etc/mongod.conf --fork",
+    "mongo:status": "sudo systemctl status mongodb",
+    "mongo:start": "sudo systemctl start mongodb",
+    "mongo:stop": "sudo systemctl stop mongodb"
   },
   "author": "Karl Schmidt",
   "license": "ISC",

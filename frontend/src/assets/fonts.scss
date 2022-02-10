@@ -1,0 +1,49 @@
+$Standard-body: "standard-body";
+$Bold-body: "bold-body";
+$Italic-body: "italic-body";
+$Italic-bold-body: "italic-bold-body";
+
+$Standard-header: "standard-header";
+$Bold-header: "bold-header";
+$Italic-header: "italic-header";
+$Italic-bold-header: "italic-bold-header";
+
+@font-face {
+  font-family: $Standard-body;
+  src: url("./fonts/neue_haas_grotesk_text_round/NeueHaasGrotTextRound-55Roman-App.ttf");
+}
+
+@font-face {
+  font-family: $Bold-body;
+  src: url("./fonts/neue_haas_grotesk_text_round/NeueHaasGrotTextRound-75Bold-App.ttf");
+}
+
+@font-face {
+  font-family: $Italic-body;
+  src: url("./fonts/neue_haas_grotesk_text_round/NeueHaasGrotTextRound-56Italic-App.ttf");
+}
+
+@font-face {
+  font-family: $Italic-bold-body;
+  src: url("./fonts/neue_haas_grotesk_text_round/NeueHaasGrotTextRound-76BoldItalic-App.ttf");
+}
+
+@font-face {
+  font-family: $Standard-header;
+  src: url("./fonts/neue_haas_grotesk_display_round/NeueHaasGrotDispRound-55Roman-App.ttf");
+}
+
+@font-face {
+  font-family: $Bold-header;
+  src: url("./fonts/neue_haas_grotesk_display_round/NeueHaasGrotDispRound-75Bold-App.ttf");
+}
+
+@font-face {
+  font-family: $Italic-header;
+  src: url("./fonts/neue_haas_grotesk_display_round/NeueHaasGrotDispRound-56Italic-App.ttf");
+}
+
+@font-face {
+  font-family: $Italic-bold-header;
+  src: url("./fonts/neue_haas_grotesk_display_round/NeueHaasGrotDispRound-76BoldItalic-App.ttf");
+}

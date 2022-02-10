@@ -1,34 +1,67 @@
-.dashboard-body {
-    background: linear-gradient(180deg, #1988d2 30em, #eceff1 30em);
+@import '../../../assets/colors.scss';
+
+.dashboard {
+    background: linear-gradient(180deg, $ATLANTIC_ALT 50em, $ATLANTIC_GREEN 50em);
     
     display: grid;
 
     height: 100%;
-    width: auto;
+    // width: auto;
 
-    grid-template-columns: 20% auto 25%;
-    grid-template-rows: 20% auto auto;
-    grid-template-areas: "toolbar toolbar toolbar"
-                         "body    body    body"
-                         "footer  footer  footer";
+    grid-template-columns: auto;
+    grid-template-rows: 10% auto 15%;
+    grid-template-areas: "toolbar"
+                         "body"
+                         "footer";
 
-    margin: 0; padding: 5px;
+    margin: 0px; padding: 0px;
 
-    div {
-        margin: 2em;
+    // div {
+    //     margin: 2em;
 
-        // mat-form-field {
-        //     border-width: thick;
-        // }
-    }
+    //     // mat-form-field {
+    //     //     border-width: thick;
+    //     // }
+    // }
 
     .dashboard-toolbar {
         grid-area: toolbar;
+        padding-right: 20%;
+        margin: 0px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        color: white;
+        background-color: $ATLANTIC_ALT;
+
+        mat-card {
+            margin-right: 5%;
+        }
+    }
+
+    .dashboard-body {
+        grid-area: body;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        color: white;
+        background-color: $ATLANTIC_ALT;
+
+        mat-card {
+            min-width: 400px;
+            min-height: 600px;
+        }
+    }
+
+    .dashboard-footer {
+        grid-area: footer;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         color: white;
         padding-right: 5%;
+        background-color: $ATLANTIC_GREEN;
     }
 }
 

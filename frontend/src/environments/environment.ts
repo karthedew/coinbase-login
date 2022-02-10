@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  hostURL: 'http://localhost',
+  INFURA_ID: 'b8bdd09e0e3641279406dde31619dda0',
+  Moralis_Bsc_Testnet_SpeedyNode: 'https://speedy-nodes-nyc.moralis.io/98e644fb64da3ecbfb9e3ffc/bsc/testnet',
+  Ws_Moralis_Bsc_Testnet: 'wss://speedy-nodes-nyc.moralis.io/98e644fb64da3ecbfb9e3ffc/bsc/testnet/ws',
+  Bsc_Testnet_PrivateKey: '3d3df226e230362979c335167b56f9219ab854024cd0348d4e6bd6874f1cf430'
 };
 
 /*

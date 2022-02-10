@@ -3,7 +3,7 @@ import axios from "axios";
 import { stringify } from "qs";
 
 // --- IMPORT SECRET KEYS ---
-import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from "../../keys";
+// import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from "../../keys";
 import { sign } from "jsonwebtoken";
 import { query } from "express";
 import { Resolver } from "type-graphql";
@@ -367,7 +367,7 @@ function createAccessToken(user: User) {
 
     return sign(
         { userId: user.id },
-        ACCESS_TOKEN_SECRET,
+        process.env.ACCESS_TOKEN_SECRET as string,
         {
             expiresIn: "15m"
         }
@@ -395,7 +395,7 @@ function createRefreshToken(user: User) {
 
     return sign(
         { userId: user.id },
-        REFRESH_TOKEN_SECRET,
+        process.env.REFRESH_TOKEN_SECRET as string,
         {
             expiresIn: "7d"
         }

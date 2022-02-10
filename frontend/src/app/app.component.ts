@@ -1,6 +1,20 @@
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { SidenavComponent } from './core/components/sidenav/sidenav.component';
 import { SidenavService } from './core/services/sidenav.service';
+
+
+// --- WALLET IMPORTS ---
+import WalletConnect from "@walletconnect/client"
+import QRCodeModal from "@walletconnect/qrcode-modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
+// --- Web3 Imports ---
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+
+declare let require: any;
+declare let window: any;
 
 @Component({
   selector: 'app-root',

@@ -1,10 +1,11 @@
+// import { config } from "dotenv";
 import { config } from "dotenv";
 import "reflect-metadata";
 import express, { json, request, Router } from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema, Query, Resolver } from "type-graphql";
 import cors from "cors";
-import { MySecrets } from "./secrets";
+// import { MySecrets } from "./secrets";
 
 // --- INTERFACES ---
 import { AppContext, AuthRequest } from "./db/interface/context.interface";
@@ -22,7 +23,8 @@ import { GitHubResolver } from "./graphql/resolvers/github/github.resolver";
 // --- AUTHENTICATION ---
 // import { getUser } from "./core/services/user.auth";
 import expressJwt from "express-jwt";
-import { ACCESS_TOKEN_SECRET, EXPRESS_JWT_SECRET } from "./keys";
+// import { ACCESS_TOKEN_SECRET, EXPRESS_JWT_SECRET } from "./keys";
+// import * as dotenv from "dotenv";
 
 // --- ERROR HANDLING ---
 import { AuthenticationError } from "apollo-server/dist/exports";
@@ -47,11 +49,13 @@ const startServer = async () => {
 
     // Apply Middleware to Include Your REST API Routes
     app.use('/', auth_routes)
+
+    console.log(process.env)
     
     // This Middleware Adds the ability to verify Jwt Tokens
     app.use(
         expressJwt({
-            secret: ACCESS_TOKEN_SECRET,
+            secret: process.env.ACCESS_TOKEN_SECRET as string || '',
             algorithms: ['HS256'],
             credentialsRequired: false
         })
@@ -117,7 +121,7 @@ const startServer = async () => {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }
-    await connect("mongodb://127.0.0.1:27017/testDatabase", db_options)
+    await connect("mongodb://127.0.0.1:27017/atlanticId", db_options)
         .then((d) => {
             console.log('Connected to MongoDB database...')
         })

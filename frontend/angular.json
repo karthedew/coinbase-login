@@ -31,9 +31,36 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "http",
+              "os",
+              "https",
+              "stream",
+              "crypto",
+              "@walletconnect/web3-provider",
+              "web3",
+              "path",
+              "fs"
+            ]
           },
           "configurations": {
+            "kovan": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.kovan.ts"
+                }
+              ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -70,6 +97,12 @@
             "browserTarget": "gitcrypto-app:build"
           },
           "configurations": {
+            "kovan": {
+              "browserTarget": "gitcrypto-app:build:kovan"
+            },
+            "development": {
+              "browserTarget": "gitcrypto-app:build:development"
+            },
             "production": {
               "browserTarget": "gitcrypto-app:build:production"
             }
@@ -119,6 +152,12 @@
             "devServerTarget": "gitcrypto-app:serve"
           },
           "configurations": {
+            "kovan": {
+              "devServerTarget": "gitcrypto-app:serve:kovan"
+            },
+            "development": {
+              "devServerTarget": "gitcrypto-app:serve:development"
+            },
             "production": {
               "devServerTarget": "gitcrypto-app:serve:production"
             }

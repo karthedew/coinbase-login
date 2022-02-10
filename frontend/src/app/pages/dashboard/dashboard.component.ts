@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 
 // --- IMPORT SERVICES ---
 import { SidenavService } from 'src/app/core/services/sidenav.service';
+import { WalletConnectService } from '../../core/services/wallet-connect/wallet-connect.service';
 
 
 
@@ -29,9 +30,18 @@ query GetRepos {
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  currentUser: string = "Karl Schmidt";
+  currentUser:    string  = "Karl Schmidt";
+  loading:        boolean;
+  loggedIn:       boolean = false;
+  currentAddress: string;
+  currentRoute:   string;
+  chainId:        string;
 
-  loading: boolean;
+  walletInfoRoute:    string = 'blue';
+  contractRouteStyle: string = "link-active";
+  chainlinkStyle:     string = 'link';
+  ethstablecoinStyle: string = 'link';
+  walletinfoStyle:    string = 'link';
 
   searchForm: FormGroup;
 
@@ -39,12 +49,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private sidenavService: SidenavService,
+    private walletConnectService: WalletConnectService,
     private formGroup: FormBuilder,
     private apollo: Apollo
   ) {
     this.searchForm = this.formGroup.group({
       search: ''
     })
+
+    // --- Check MetaMask Login ---
+    this.walletConnectService.checkMetaMaskConnection();      // Check if user is already connected with MetaMask
+    this.walletConnectService.isConnected$.subscribe(         // Subscribe to get the loggedIn boolean
+      (res:any) => this.loggedIn = res)
+    this.walletConnectService.walletAccounts$.subscribe(      // Subscribe to get the wallet address
+      (res:string[]) => this.currentAddress = res[0])
+    this.walletConnectService.chainId$.subscribe(             // Subscribe to get the chainId
+      (res:string) => this.chainId = res)
   }
 
   ngOnInit(): void {
@@ -60,6 +80,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.querySubscription.unsubscribe();
+  }
+
+  public connectWallet(): void {
+    this.walletConnectService.connectAccount();
+    this.walletConnectService.checkMetaMaskConnection();
   }
 
 }

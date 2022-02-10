@@ -1,18 +1,79 @@
-<div class="dashboard-body">
+<div class="dashboard">
     <div class="dashboard-toolbar">
-        <div>
-            <form [formGroup]="searchForm">
-                <mat-form-field appearance="outline">
-                    <mat-label>Outline form field</mat-label>
-                    <input matInput placeholder="Placeholder">
-                </mat-form-field>
-            </form>
-            
+        <mat-card>
+            Coinbase Profile
+        </mat-card>
+    
+        <mat-card>
+            NFID
+        </mat-card>
+        <!-- <div>
+            <atlButtonDirective
+            colorType="primary">hello
+            </atlButtonDirective>
         </div>
-        <span></span>
+    
         <div>
             {{ currentUser }}
         </div>
         
+        <div>
+            {{chainId}}
+        </div>
+        
+        <div>
+            {{currentAddress}}
+        </div>
+    
+        <div *ngIf="!loggedIn">
+            <atlButtonDirective 
+                colorType="primary"
+                (click)="connectWallet()">
+                Connect Wallet
+            </atlButtonDirective>
+        </div> -->
+        
     </div>
+    
+    <div class="dashboard-body">
+        <mat-card>
+            <mat-card-title>
+                Coinbase Profile
+            </mat-card-title>
+
+            <mat-card-content>
+                Username, ID, email, etc.
+            </mat-card-content>
+
+            <mat-card-footer>
+                Anything else?
+            </mat-card-footer>
+        </mat-card>
+    
+        <mat-card>
+            <mat-card-title>
+                NFID Profile
+            </mat-card-title>
+
+            <mat-card-content>
+                Name, ID, exchange, jurisdiction, expiry, etc.
+            </mat-card-content>
+
+            <mat-card-footer>
+                Anything else?
+            </mat-card-footer>
+        </mat-card>
+    </div>
+    
+    <div class="dashboard-footer">
+        <mat-card>
+            Coinbase Profile
+        </mat-card>
+    
+        <mat-card>
+            NFID
+        </mat-card>
+    </div>
+
+
 </div>

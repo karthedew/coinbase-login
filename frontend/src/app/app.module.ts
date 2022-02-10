@@ -31,6 +31,8 @@ import { InMemoryCache } from '@apollo/client/core';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { ButtonComponent } from './core/components/button/button.component';
+import { AtlButtonDirective } from './core/directives/atl-button/atl-button.directive';
 // import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 @NgModule({
@@ -44,7 +46,9 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     ToolbarComponent,
     SidenavComponent,
     HeaderComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ButtonComponent,
+    AtlButtonDirective
   ],
   imports: [
     AuthModule,

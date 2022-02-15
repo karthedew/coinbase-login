@@ -33,7 +33,7 @@ auth_routes.get("/api/auth/coinbase/login", (_req, res) => {
     // res.send(result);
 
     const endpoint = BASE + stringify(queryParams)
-
+    console.log(res)
     res.redirect(endpoint)
 })
 

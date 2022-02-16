@@ -8,3 +8,6 @@ backend/src/keys.ts
 backend/src/secrets.ts
 
 truffle/node_modules
+truffle/.env
+truffle/foo_test/*
+truffle/outputs/*

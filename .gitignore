@@ -11,3 +11,7 @@ truffle/node_modules
 truffle/.env
 truffle/foo_test/*
 truffle/outputs/*
+
+terraform/env.bat
+terraform/.terraform
+terraform/.terraform.lock.hcl

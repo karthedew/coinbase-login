@@ -18,11 +18,13 @@ contract AtlanticId is
     ERC721Pausable
 {
     using Counters for Counters.Counter;
+    using DateTime for DateTime._DateTime;
     using DateTime for *;
 
     /** --- USER ROLES --- */
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
+    bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
 
     /** LOCAL VARIABLES */
     Counters.Counter private _tokenIdTracker;   // Token Id Tracker
@@ -32,14 +34,23 @@ contract AtlanticId is
         string uid;                               //> | User's Identification Number
         string eid;                               //> | User's Exchange Identification Number
         string exchange;                          //> | Centralized Exchange where user's KYC info is registered
-        Date expiry;                              //> | Expiration date - period of valid ID
+        DateTime._DateTime expiry;                //> | Expiration date - period of valid ID
     }
     /** The date holds the expiration of the valid AID. */
-    struct Date {
+    // Date is set as:
+    /*
+    struct _DateTime {
         uint16 year;
         uint8 month;
         uint8 day;
+        uint8 hour;
+        uint8 minute;
+        uint8 second;
+        uint8 weekday;
     }
+    */
+    DateTime._DateTime Date;
+
     /** --- TokenId mapped to User's Information */
     mapping(uint256 => AID) id_to_AID;
 
@@ -66,7 +77,6 @@ contract AtlanticId is
         string memory a_exchange
     ) public virtual {
         require(hasRole(MINTER_ROLE, _msgSender()), "ERC721PresetMinterPauserAutoId: must have minter role to mint");
-        
         // --- Calculate the Expiration Date ---
         (uint16 now_year, uint8 now_month, uint8 now_day) = timestampToDate(block.timestamp);
         uint16 next_year = now_year + 1;

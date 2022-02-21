@@ -1,10 +1,17 @@
 const AtlanticId = artifacts.require('AtlanticId')
 
 contract('AtlanticId Function Testing', async accounts => {
+    /** Full Test Variables */
     const owner = accounts[0]
     const acnt1 = accounts[1]
     const acnt2 = accounts[2]
     const acnt3 = accounts[3]
+    const acnt4 = accounts[4]
+    const acnt5 = accounts[5]
+    const acnt6 = accounts[6]
+    const acnt7 = accounts[7]
+    const acnt8 = accounts[8]
+    const acnt9 = accounts[9]
     var atlanticIdInstance
 
     before('Setup Contract', async function() {

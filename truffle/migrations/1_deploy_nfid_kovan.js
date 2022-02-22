@@ -31,8 +31,8 @@ module.exports = async function(deployer, network, accounts) {
 
         /** DEPLOY CONTRACT(S) */
         await deployer.deploy(DateTimeLibrary)
+        await deployer.link(DateTimeLibrary, NfidContract)
         await deployer.deploy(NfidContract)
-        // await deployer.link()
         /** ------------------ */
         const instance = await NfidContract.deployed()
 

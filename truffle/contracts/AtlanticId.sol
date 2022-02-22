@@ -14,6 +14,7 @@ import "./DateTime.sol";
 TODO: Add EVENTS
         EVENT 1] Mint(tokenId)
         EVENT 2]
+TODO: Require a signed transaction from the "to" address before minting approval.
  */
 
 contract AtlanticId is
@@ -47,7 +48,7 @@ contract AtlanticId is
         DateTime._DateTime expiry;                //> | Expiration date - period of valid ID
     }
     mapping(uint256 => AID) id_to_AID;          // TokenId mapped to User's Information
-    mapping(address => string) approved_key;    // Checks if address has an approved key.
+    mapping(address => string) mint_key;        // Checks if address has an approved key.
     mapping(address => bool) transfer_key;      // Checks if address has an approved key.
     mapping(string => uint) _months;            // Mapping of months to numbers
 
@@ -75,6 +76,9 @@ contract AtlanticId is
         > supportsInterface()
         > unpause()
         > _beforeTokenTransfer()
+        > _beforeTokenTransfer()
+        > transferFrom()
+        > safeTransferFrom()
     
     TRANSFER FUNCTIONS
     ------------------
@@ -146,12 +150,18 @@ contract AtlanticId is
     FUNCTIONS
     ---------
         > approveMint()
+        > approveTransfer()
         > mint()
      */
 
-    function approveMint(string memory _key, address from) public {
+    function approveMint(string memory _key, address to) public {
         require(hasRole(MINTER_ROLE, _msgSender()), "ERC721ApprovedMint: must have MINTER_ROLE or be owner to allow minting.");
-        approved_key[from] = _key;
+        mint_key[to] = _key;
+    }
+
+    function approveTransfer(string memory _key, address to) public {
+        require(hasRole(TRANSFER_ROLE, _msgSender()), "ERC721ApprovedTransfer: must have TRANSFER_ROLE or be owner to allow transfer.");
+        mint_key[to] = _key;
     }
 
 
@@ -179,7 +189,7 @@ contract AtlanticId is
         /** FUNCTION VARIABLES */
         uint _timestamp = block.timestamp;
         // STEP 1: Require MINTER_ROLE & _key
-        require(hasRole(MINTER_ROLE, _msgSender()), "ERC721PresetMinterPauserAutoId: must have minter role to mint");
+        // require(hasRole(MINTER_ROLE, _msgSender()), "ERC721PresetMinterPauserAutoId: must have minter role to mint");
         uint256 _tokenId = _tokenIdTracker.current();
 
         // STEP 2: Calculate the Expiration Date
@@ -206,7 +216,7 @@ contract AtlanticId is
         _tokenIdTracker.increment();
 
         // STEP 6: Delete _key
-        delete approved_key[_msgSender()];
+        delete mint_key[_msgSender()];
     }
 
 
@@ -299,14 +309,18 @@ contract AtlanticId is
     /** MODIFIERS */
     // keccak256(abi.encodePacked(a)
     modifier hasKey(address _sender, string memory _key) {
-      if (keccak256(abi.encodePacked(approved_key[_sender])) == keccak256(abi.encodePacked(_key))) {
+      if (keccak256(abi.encodePacked(mint_key[_sender])) == keccak256(abi.encodePacked(_key))) {
          _;
+      } else {
+          revert("Account (msg.sender) must have an approved mint key.");
       }
     }
 
     modifier canTransfer(address _sender) {
       if (transfer_key[_sender]) {
          _;
+      } else {
+          revert("Account (msg.sender) must have an approved transfer key.");
       }
     }
 

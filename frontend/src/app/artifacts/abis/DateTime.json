@@ -18,7 +18,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -37,7 +38,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -61,7 +63,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -80,7 +83,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -99,7 +103,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -118,7 +123,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -137,7 +143,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -156,7 +163,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -175,7 +183,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -194,7 +203,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -233,7 +243,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -267,7 +278,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -296,7 +308,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -340,7 +353,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getDay\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"month\",\"type\":\"uint8\"},{\"internalType\":\"uint16\",\"name\":\"year\",\"type\":\"uint16\"}],\"name\":\"getDaysInMonth\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getHour\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getMinute\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getMonth\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getSecond\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getWeekday\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"getYear\",\"outputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"year\",\"type\":\"uint16\"}],\"name\":\"isLeapYear\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"year\",\"type\":\"uint256\"}],\"name\":\"leapYearsBefore\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"year\",\"type\":\"uint16\"},{\"internalType\":\"uint8\",\"name\":\"month\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"day\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"hour\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"minute\",\"type\":\"uint8\"}],\"name\":\"toTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"year\",\"type\":\"uint16\"},{\"internalType\":\"uint8\",\"name\":\"month\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"day\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"hour\",\"type\":\"uint8\"}],\"name\":\"toTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"year\",\"type\":\"uint16\"},{\"internalType\":\"uint8\",\"name\":\"month\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"day\",\"type\":\"uint8\"}],\"name\":\"toTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"year\",\"type\":\"uint16\"},{\"internalType\":\"uint8\",\"name\":\"month\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"day\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"hour\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"minute\",\"type\":\"uint8\"},{\"internalType\":\"uint8\",\"name\":\"second\",\"type\":\"uint8\"}],\"name\":\"toTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/DateTime.sol\":\"DateTime\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/DateTime.sol\":{\"keccak256\":\"0xf3ef7434a02d6e6fc4477332dac959daee63e6d3f7a3f61ac333a8c848d74fda\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0c57b45ac2f999a74e13a63ce01faa02fdf37ce0cbe07797a4d5fb3f4de56eaf\",\"dweb:/ipfs/Qmc1CoTid3McpaFDrXQhVY6TvLDotQwH2RBhg9ZjFwPtR4\"]}},\"version\":1}",
@@ -25932,9 +25946,17 @@
     "name": "solc",
     "version": "0.8.11+commit.d7f03943.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x4C9392cBfE8Ece0F6CB0556e6a5677CC6d365F04",
+      "transactionHash": "0x80f48cd59df583956badc78f443d954d34d58612b34041b8d80230aa38166a4f"
+    }
+  },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-02-14T17:19:54.694Z",
+  "updatedAt": "2022-02-21T21:32:33.819Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

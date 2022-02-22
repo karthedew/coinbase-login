@@ -37,11 +37,11 @@ module.exports = {
       provider: function() {
         // Can replace the Private Key with either a MNEMONIC or list of [ Private Key #1, Private Key #2 ].
         return new HDWalletProvider(process.env.KOVAN_PRIVATE_KEY, process.env.KOVAN_HTTP_URL)
-     },
-     network_id: 42,
-     gasPrice: 100000000000, // 20 GWEI
-     gas: 4712388,          // gas limit, set any number you want,
-     skipDryRun: true
+    },
+    network_id: 42,
+    gasPrice: 100000000000, // 20 GWEI
+    gas: 4712388,          // gas limit, set any number you want,
+    skipDryRun: true
    },
    bsc_testnet: {
     provider: () => new HDWalletProvider(process.env.BSC_TESTNET_PRIVATE_KEY, `https://data-seed-prebsc-1-s1.binance.org:8545`),
@@ -67,11 +67,11 @@ module.exports = {
   },
   compilers: {
     solc: {
-      version: "0.8.11",                                     // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.11",                                    // Fetch exact version from solc-bin (default: truffle's version)
       docker: false,                                        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {                                           // See the solidity docs for advice about optimization and evmVersion
        optimizer: {
-         enabled: false,
+         enabled: true,
          runs: 200
        },
        evmVersion: "byzantium"

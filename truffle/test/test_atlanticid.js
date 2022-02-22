@@ -71,7 +71,7 @@ contract('AtlanticId Function Testing', async accounts => {
 
         it("Check if Transfer event is emitted.", async () => {
             await atlanticIdInstance.approveMint("key4", acnt4, {from: owner})
-            const acnt4_mint_instance = await atlanticIdInstance.mint(
+            acnt4_mint_instance = await atlanticIdInstance.mint(
                 "acnt4.ens",
                 "myUid:1892389c83u2",
                 "coinbase",
@@ -118,35 +118,71 @@ contract('AtlanticId Function Testing', async accounts => {
         })
     })
 
-    // it("Test mint creation, including Events emitted.", async () => {
+    describe("Test if mint creation works.", async () => {
 
-    //     // web3.AtlanticId.
-    //     // instance.sendCoin(accounts[1], 10, {from: accounts[0]})
-    //     const create_mint_key = await atlanticIdInstance.approveMint("key1", acnt1, {from: owner})
-    //     // console.log('The Create Mint Key is...')
-    //     // console.log(create_mint_key)
-    //     // console.log('---------------------------')
+        var acnt7_mint_instance
+        var _tokenId
+        const _ens = "acnt7.ens"
+        const _uid = "myUid:1892389c83u2"
+        const _exchange = "coinbase"
+        const _key = "key7"
 
-    //     const acnt1_mint_instance = await atlanticIdInstance.mint(
-    //         "acnt1.ens",
-    //         "myUid:1892389c83u2",
-    //         "coinbase",
-    //         "key1",
-    //         {
-    //             from: acnt1
-    //         }
-    //     )
+        /** TEST SETUP */
+        before('Setup Contract', async function() {
+            await atlanticIdInstance.approveMint("key7", acnt7, {from: owner})
+            acnt7_mint_instance = await atlanticIdInstance.mint(
+                _ens,
+                _uid,
+                _exchange,
+                _key,
+                {
+                    from: acnt7
+                }
+            )
+            _tokenId = acnt7_mint_instance.logs[2].args.tokenId.words[0]
+        })
 
-    //     // console.log('The Mint for Account #1 is...')
-    //     // console.log(acnt1_mint_instance)
-    //     // console.log(acnt1_mint_instance.logs[2].args.tokenId.words[0])
-    //     // console.log('---------------------------')
+        it('Get account ens.', async () => {
+            const acnt7_ens = await atlanticIdInstance.getEns(_tokenId)
+            assert.equal(acnt7_ens, _ens)
+        })
 
-    //     truffleAssert.eventEmitted(acnt1_mint_instance, 'Mint', (ev) => {
-    //         return ev.tokenId == 1
-    //     });
-    //     // assert.equal(create_message, 1);
-    // });
+        it('Get account uid.', async () => {
+            const acnt7_uid = await atlanticIdInstance.getUid(_tokenId)
+            assert.equal(acnt7_uid, _uid)
+        })
+
+        it('Get account exchange.', async () => {
+            const acnt7_exchange = await atlanticIdInstance.getExchange(_tokenId)
+            assert.equal(acnt7_exchange, _exchange)
+        })
+
+        it('Get account expiration date (expry) - day, month, year', async () => {
+            /** GET BLOCKCHAIN DATE */
+            var acnt7_expry = await atlanticIdInstance.getExpry(_tokenId)
+            const _day = acnt7_expry[0].words[0]
+            const _month = acnt7_expry[1].words[0]
+            const _year = acnt7_expry[2].words[0]
+
+            /** GET CURRENT DATE */
+            var date = new Date()
+            var day = date.getUTCDate();
+            var month = date.getUTCMonth() + 1; //months from 1-12
+            var year = date.getUTCFullYear()+1;
+
+            /** ASSERT TESTS */
+            assert.equal(_day,day)
+            assert.equal(_month,month)
+            assert.equal(_year,year)
+        })
+
+        
+
+        // truffleAssert.eventEmitted(acnt7_mint_instance, 'Mint', (ev) => {
+        //     return ev.tokenId == 1
+        // });
+        // assert.equal(create_message, 1);
+    });
 
 
     // afterEach('kill instance after each session', async () => {

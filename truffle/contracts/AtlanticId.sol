@@ -159,9 +159,19 @@ contract AtlanticId is
         mint_key[to] = _key;
     }
 
-    function approveTransfer(string memory _key, address to) public {
+    function getMintKey(address to) public view returns (string memory) {
+        require(_msgSender() == atlanticIdOwner, "ERC721GetMintKey: must be the owner of the contract to retrieve mint key.");
+        return mint_key[to];
+    }
+
+    function approveTransfer(address to) public {
         require(hasRole(TRANSFER_ROLE, _msgSender()), "ERC721ApprovedTransfer: must have TRANSFER_ROLE or be owner to allow transfer.");
-        mint_key[to] = _key;
+        transfer_key[to] = true;
+    }
+
+    function getTransferKey(address from) public view returns (bool) {
+        require(_msgSender() == atlanticIdOwner, "ERC721GetTransferKey: must be the owner of the contract to retrieve transfer key");
+        return transfer_key[from];
     }
 
 
@@ -305,6 +315,14 @@ contract AtlanticId is
             }
         }
     }
+
+    // function _transferExists(address from) internal view virtual returns (bool) {
+    //     return transfer_key[from] == true;
+    // }
+
+    // function _mintExists(address from) internal view virtual returns (bool) {
+    //     return mint_key[from] != "";
+    // }
 
     /** MODIFIERS */
     // keccak256(abi.encodePacked(a)
